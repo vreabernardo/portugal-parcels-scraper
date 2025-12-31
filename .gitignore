@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.temp_parcels/
+portugal_parcels.geojson
+portugal_complete_parcels.png
+
