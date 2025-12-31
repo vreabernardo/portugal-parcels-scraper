@@ -2,6 +2,10 @@
 
 Downloads all cadastral parcels from Portugal (4.9M+ parcels) and outputs a single normalized GeoJSON file.
 
+![Portugal Parcels](preview.png)
+
+*Green: INSPIRE cadastral parcels (all Portugal) | Blue: RGG registered parcels (northern Portugal)*
+
 ## Discovery
 
 Endpoints were discovered by inspecting network requests on the BUPi (Balcao Unico do Predio) map:
