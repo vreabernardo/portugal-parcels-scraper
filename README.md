@@ -3,9 +3,10 @@
 Downloads all cadastral parcels from Portugal (4.9M+ parcels) and outputs a single normalized GeoJSON file.
 
 <p align="center">
-  <img src="preview.png" alt="Portugal Parcels" width="400">
+  <img src="preview.png" alt="Portugal Parcels" width="300">
+  <img src="detail.png" alt="Parcel Detail" width="300">
   <br>
-  <em>Green: INSPIRE cadastral parcels (all Portugal) | Blue: RGG registered parcels (northern Portugal)</em>
+  <em>Green: INSPIRE cadastral parcels | Blue: RGG registered parcels</em>
 </p>
 
 ## Discovery
