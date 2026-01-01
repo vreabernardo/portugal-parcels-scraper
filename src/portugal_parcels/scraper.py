@@ -9,8 +9,10 @@ from pathlib import Path
 import geopandas as gpd
 import pandas as pd
 
-TEMP_DIR = Path("output/.temp_parcels")
-OUTPUT_FILE = "output/portugal_parcels.geojson"
+# Use project root for paths
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+TEMP_DIR = PROJECT_ROOT / "output/.temp_parcels"
+OUTPUT_FILE = PROJECT_ROOT / "output/portugal_parcels.geojson"
 MAX_CONCURRENT = 5
 
 
