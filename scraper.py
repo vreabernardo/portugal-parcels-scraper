@@ -1,6 +1,5 @@
 import asyncio
 import aiohttp
-import ssl
 import json
 import xml.etree.ElementTree as ET
 import shutil
@@ -135,11 +134,7 @@ def normalize_and_merge():
 async def main():
     TEMP_DIR.mkdir(exist_ok=True)
     
-    ssl_context = ssl.create_default_context()
-    ssl_context.check_hostname = False
-    ssl_context.verify_mode = ssl.CERT_NONE
-    
-    connector = aiohttp.TCPConnector(ssl=ssl_context, limit=MAX_CONCURRENT)
+    connector = aiohttp.TCPConnector(ssl=False, limit=MAX_CONCURRENT)
     async with aiohttp.ClientSession(connector=connector) as session:
         await download_inspire_parcels(session)
         await download_rgg_parcels(session)
