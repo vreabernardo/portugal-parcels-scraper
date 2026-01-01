@@ -167,7 +167,7 @@ def normalize_and_merge():
     log("Done.")
 
 
-async def main():
+async def async_main():
     TEMP_DIR.mkdir(exist_ok=True)
     
     connector = aiohttp.TCPConnector(ssl=get_ssl_context(), limit=MAX_CONCURRENT)
@@ -183,5 +183,9 @@ async def main():
     log(f"\nOutput: {OUTPUT_FILE}")
 
 
+def main():
+    asyncio.run(async_main())
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
