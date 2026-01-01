@@ -101,33 +101,17 @@ def normalize_and_merge():
     """Load, normalize, and merge all parcels into single GeoJSON."""
     print("\n=== Normalizing and Merging ===", flush=True)
     
-    # Load and normalize INSPIRE (EPSG:3763 -> EPSG:4326)
-    inspire_files = sorted((TEMP_DIR / "inspire").glob("*.geojson"))
-    inspire = gpd.GeoDataFrame(pd.concat([gpd.read_file(f) for f in inspire_files], ignore_index=True), crs="EPSG:3763")
-    inspire = inspire.to_crs("EPSG:4326")
-    inspire_norm = gpd.GeoDataFrame({
-        'id': inspire.get('inspireid', inspire.index.astype(str)),
-        'reference': inspire.get('nationalcadastralreference', ''),
-        'area_m2': inspire.get('areavalue', None),
-        'source': 'inspire',
-        'geometry': inspire.geometry
-    }, crs="EPSG:4326")
+    # Load INSPIRE (EPSG:3763 -> EPSG:4326)
+    inspire = gpd.GeoDataFrame(pd.concat([gpd.read_file(f) for f in sorted((TEMP_DIR / "inspire").glob("*.geojson"))], ignore_index=True), crs="EPSG:3763").to_crs("EPSG:4326")
+    inspire_norm = gpd.GeoDataFrame({'id': inspire.get('inspireid', inspire.index.astype(str)), 'reference': inspire.get('nationalcadastralreference', ''), 'area_m2': inspire.get('areavalue', None), 'source': 'inspire', 'geometry': inspire.geometry}, crs="EPSG:4326")
     
-    # Load and normalize RGG (already EPSG:4326)
-    rgg_files = sorted((TEMP_DIR / "rgg").glob("*.geojson"))
-    rgg = gpd.GeoDataFrame(pd.concat([gpd.read_file(f) for f in rgg_files], ignore_index=True), crs="EPSG:4326")
-    rgg_norm = gpd.GeoDataFrame({
-        'id': rgg.get('objectid', rgg.index.astype(str)).astype(str),
-        'reference': '',
-        'area_m2': rgg.get('st_area(shape)', None),
-        'source': 'rgg',
-        'geometry': rgg.geometry
-    }, crs="EPSG:4326")
+    # Load RGG (already EPSG:4326)
+    rgg = gpd.GeoDataFrame(pd.concat([gpd.read_file(f) for f in sorted((TEMP_DIR / "rgg").glob("*.geojson"))], ignore_index=True), crs="EPSG:4326")
+    rgg_norm = gpd.GeoDataFrame({'id': rgg.get('objectid', rgg.index.astype(str)).astype(str), 'reference': '', 'area_m2': rgg.get('st_area(shape)', None), 'source': 'rgg', 'geometry': rgg.geometry}, crs="EPSG:4326")
     
     # Merge and save
     combined = gpd.GeoDataFrame(pd.concat([inspire_norm, rgg_norm], ignore_index=True), crs="EPSG:4326")
-    print(f"Total: {len(combined):,} features", flush=True)
-    print(f"Saving to {OUTPUT_FILE}...", flush=True)
+    print(f"Total: {len(combined):,} features. Saving to {OUTPUT_FILE}...", flush=True)
     combined.to_file(OUTPUT_FILE, driver="GeoJSON")
 
 
