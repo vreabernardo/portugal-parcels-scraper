@@ -98,17 +98,3 @@ uv run portugal-parcels
 
 Output: `output/portugal_parcels.geojson` (~5 GB)
 
-## Project Structure
-
-```
-portugal-parcels-scraper/
-  src/portugal_parcels/
-    scraper.py          # Main scraper
-  images/
-    preview.png         # Overview map
-    detail.png          # Detail view
-  output/               # Generated files
-  pyproject.toml        # Dependencies
-  README.md
-```
-
