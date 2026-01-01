@@ -2,7 +2,6 @@
 __pycache__/
 *.pyc
 .DS_Store
-.temp_parcels/
-portugal_parcels.geojson
-portugal_complete_parcels.png
-
+output/
+*.geojson
+images/portugal_complete_parcels.png

@@ -3,8 +3,8 @@
 Downloads all cadastral parcels from Portugal (4.9M+ parcels) and outputs a single normalized GeoJSON file.
 
 <p align="center">
-  <img src="preview.png" alt="Portugal Parcels" width="300">
-  <img src="detail.png" alt="Parcel Detail" width="300">
+  <img src="images/preview.png" alt="Portugal Parcels" width="300">
+  <img src="images/detail.png" alt="Parcel Detail" width="300">
   <br>
   <em>Green: INSPIRE cadastral parcels | Blue: RGG registered parcels</em>
 </p>
@@ -84,20 +84,31 @@ GET /MapServer/0/query?where=1=1
 | source | `inspire` or `rgg` |
 | geometry | Polygon in EPSG:4326 |
 
+## Installation
+
+```bash
+uv sync
+```
+
 ## Usage
 
 ```bash
-uv venv
-uv pip install aiohttp geopandas
-uv run scraper.py
+uv run portugal-parcels
 ```
 
-Output: `portugal_parcels.geojson` (~5 GB)
+Output: `output/portugal_parcels.geojson` (~5 GB)
 
-## Requirements
+## Project Structure
 
-- Python 3.10+
-- aiohttp
-- geopandas
-- pandas
+```
+portugal-parcels-scraper/
+  src/portugal_parcels/
+    scraper.py          # Main scraper
+  images/
+    preview.png         # Overview map
+    detail.png          # Detail view
+  output/               # Generated files
+  pyproject.toml        # Dependencies
+  README.md
+```
 

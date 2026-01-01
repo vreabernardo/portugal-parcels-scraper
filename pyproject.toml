@@ -1,0 +1,21 @@
+[project]
+name = "portugal-parcels"
+version = "0.1.0"
+description = "Download all cadastral parcels from Portugal (4.9M+ parcels) as GeoJSON"
+readme = "README.md"
+authors = [
+    { name = "vreabernardo", email = "vreabernardo@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "aiohttp>=3.9.0",
+    "geopandas>=0.14.0",
+    "pandas>=2.0.0",
+]
+
+[project.scripts]
+portugal-parcels = "portugal_parcels.scraper:main"
+
+[build-system]
+requires = ["uv_build>=0.9.7,<0.10.0"]
+build-backend = "uv_build"
