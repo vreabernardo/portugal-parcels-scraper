@@ -168,7 +168,7 @@ def normalize_and_merge():
 
 
 async def async_main():
-    TEMP_DIR.mkdir(exist_ok=True)
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
     
     connector = aiohttp.TCPConnector(ssl=get_ssl_context(), limit=MAX_CONCURRENT)
     async with aiohttp.ClientSession(connector=connector) as session:
